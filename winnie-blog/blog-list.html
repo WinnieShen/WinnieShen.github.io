@@ -33,35 +33,35 @@
         <a class="btn btn-default read-more" onclick="loadThisArticle(artid);">Read More>></a>
     </article>-->
 </div>
-
+<div id="nav-page"></div>
 <script src="../resource/js/jquery-2.1.4.min.js"></script>
 <script src="data/article.js"></script>
 <script>
-    
+    // var currentPageNum = 1, pagesSumNum = 1;
     $(document).ready(function(){
-        loadArticles();
+        // loadArticles();
+        loadPageComp();
     });
-    function loadArticles(){
-        var arr = sorArticlesByDate(articleArr);
-        $("#article-list").html("");
-        for(var i=0;i<arr.length;i++){
-        
-            var ulText = "<article class='blog-content'>" +
-            "<h3><a class='color-black-hover-grey no-underline font-tillana'  onclick='loadThisArticle("+arr[i].id+");'>"+
-            arr[i].title +
-            "</a></h3>" + 
-            "<div class='font-common'>" + 
-            "<label class='color-gray'>"+
-            arr[i].publishDate +
-            "</label>" + 
-            "<a class='comments-number no-underline color-grey'  onclick='loadThisArticle("+arr[i].id+");'>" + 
-            "<span class='glyphicon glyphicon-comment'></span>" +
-            getCommentsOfBlogSortByDate(arr[i].id).length +
-            "条评论</a></div><div class='blog-real-content'>" +  arr[i].introduction +
-            "</div><a class='btn btn-default read-more' onclick='loadThisArticle("+arr[i].id+");'>Read More>></a></article>";                     
-            $("#article-list").append(ulText);
-        }
-    }
+    // function loadArticles(){
+    //     var arr = sorArticlesByDate(articleArr);
+    //     $("#article-list").html("");
+    //     for(var i=0;i<arr.length;i++){  
+    //         var ulText = "<article class='blog-content'>" +
+    //         "<h3><a class='color-black-hover-grey no-underline font-tillana'  onclick='loadThisArticle("+arr[i].id+");'>"+
+    //         arr[i].title +
+    //         "</a></h3>" + 
+    //         "<div class='font-common'>" + 
+    //         "<label class='color-gray'>"+
+    //         arr[i].publishDate +
+    //         "</label>" + 
+    //         "<a class='comments-number no-underline color-grey'  onclick='loadThisArticle("+arr[i].id+");'>" + 
+    //         "<span class='glyphicon glyphicon-comment'></span>" +
+    //         getCommentsOfBlogSortByDate(arr[i].id).length +
+    //         "条评论</a></div><div class='blog-real-content'>" +  arr[i].introduction +
+    //         "</div><a class='btn btn-default read-more' onclick='loadThisArticle("+arr[i].id+");'>Read More>></a></article>";                     
+    //         $("#article-list").append(ulText);
+    //     }
+    // }
     function loadThisArticle(id){
         var thisAticle = getArticleById(id);
         $("#article-list").html("");
@@ -82,4 +82,75 @@
         $("#article-list").append(ulText);
         $("#article"+id).load(thisAticle.content);
     }
+
+    function loadPageComp(){
+        var arr = sorArticlesByDate(articleArr);
+        var pagesNum = Math.ceil(arr.length/5);
+        pagesSumNum =pagesNum;
+        var navHead = "<nav class='center' aria-label='...'><ul class='pagination'>" + 
+            "<li id='previous-icon'><a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+        var navfoot = "<li id='next-icon'><a aria-label='Previous'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>";
+        var navContent = "";
+        for(var i=1;i<=pagesNum;i++){
+            var text = "<li id='page"+ i +"'><a onclick='loadArticlesByPage("+ i + ","+ pagesNum + ");'>"+ i +" <span class='sr-only'>(current)</span></a></li>";
+            navContent += text;
+        }
+        loadArticlesByPage(1,pagesNum);
+        $("#nav-page").html(navHead + navContent + navfoot);
+        $("#page1").addClass("active");
+    }
+
+    function loadArticlesByPage(currentPage,pagesNum){
+        // currentPageNum = currentPage;
+        // if(currentPageNum<=0 || currentPageNum >pagesNum){
+        //     return;
+        // }
+        
+        var arr = sorArticlesByDate(articleArr);
+        $("#article-list").html("");
+        if(pagesNum == 1){
+            $("#previous-icon").addClass("disabled");
+            $("#next-icon").addClass("disabled");
+        }else if(currentPage ==1){
+            $("#next-icon").removeClass("disabled");
+            $("#previous-icon").addClass("disabled");
+        }else if(currentPage == pagesNum){
+            $("#previous-icon").removeClass("disabled");
+            $("#next-icon").addClass("disabled");
+        }
+        for(var j =currentPage*5-5;j<currentPage*5;j++){
+            if(j == arr.length){
+                break;
+            }
+            var ulText = "<article class='blog-content'>" +
+                "<h3><a class='color-black-hover-grey no-underline font-tillana' onclick='loadThisArticle("+arr[j].id+");'>"+
+                arr[j].title +
+                "</a></h3>" + 
+                "<div class='font-common'>" + 
+                "<label class='color-gray'>" +
+                arr[j].publishDate +
+                "</label>" + 
+                "<a class='comments-number no-underline color-grey'  onclick='loadThisArticle("+arr[j].id+");'>" + 
+                "<span class='glyphicon glyphicon-comment'></span>" +
+                getCommentsOfBlogSortByDate(arr[j].id).length +
+                "条评论</a></div><div class='blog-real-content'>" +  arr[j].introduction +
+                "</div><a class='btn btn-default read-more' onclick='loadThisArticle("+arr[j].id+");'>Read More>></a></article>";
+                            
+            $("#article-list").append(ulText);
+        }
+        $("li").removeClass("active");
+        $("#page"+currentPage).addClass("active");
+        
+    }
+
+    // function previousPage(){
+    //     loadArticlesByPage(currentPageNum-1,pagesSumNum);
+    // }
+    // function nextPage(){
+    //     loadArticlesByPage(currentPageNum+1,pagesSumNum);
+    // }
+    // $("#previous-icon>a").on('click',previousPage());
+    // $("#next-icon>a").attr("onclick","nextPage();");
+
+    
 </script>
