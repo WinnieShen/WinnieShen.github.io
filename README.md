@@ -5,4 +5,4 @@
 <hr/>
 
 # 2.Lists of Content
-type https://winnieshen.github.io/winnieBlog/ to view my blogs.
+type https://winnieshen.github.io/winnie-blog/ to view my blogs.
