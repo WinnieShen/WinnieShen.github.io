@@ -17,7 +17,7 @@
         margin-right: 10px;
     }
 </style>
-<div id="load"><h1>Loading</h1></div>
+<div class="color-grey" id="load"><h1>Loading</h1></div>
 <div id="article-list">
     <article class="blog-content">
         <h3><a class="color-black-hover-grey no-underline font-tillana" onclick="loadThisArticle(artid);">blogtitle</a></h3>
@@ -39,8 +39,8 @@
 <script>
     
     $(document).ready(function(){
-        $("#load").show();
         $("#article-list").hide();
+        $("#load").show(); 
         loadArticles();
     });
     function loadArticles(){
