@@ -17,6 +17,7 @@
         margin-right: 10px;
     }
 </style>
+<div id="load"><h1>Loading</h1></div>
 <div id="article-list">
     <article class="blog-content">
         <h3><a class="color-black-hover-grey no-underline font-tillana" onclick="loadThisArticle(artid);">blogtitle</a></h3>
@@ -38,6 +39,8 @@
 <script>
     
     $(document).ready(function(){
+        $("#load").show();
+        $("#article-list").hide();
         loadArticles();
     });
     function loadArticles(){
@@ -50,25 +53,29 @@
                             .replace(/blogcommentNum/,getCommentsOfBlogSortByDate(arr[i].id).length).replace(/blogintroduction/,arr[i].introduction);                         
             $("#article-list").append(artContent);
         }
+        $("#load").hide();
+        $("#article-list").show();
     }
     function loadThisArticle(id){
         var thisAticle = getArticleById(id);
+        $("#article-list").html("");
         var ulText = "<article class='blog-content'>" +
-        "<h3><a class='color-black-hover-grey no-underline font-tillana'>blogtitle</a></h3>" + 
+        "<h3><a class='color-black-hover-grey no-underline font-tillana'>"+
+        thisAticle.title +
+        "</a></h3>" + 
         "<div class='font-common'>" + 
-        "<label class='color-gray'>blogpublishDate</label>" + 
+        "<label class='color-gray'>"+
+        thisAticle.publishDate +
+         "</label>" + 
         "<a class='comments-number no-underline color-grey'>" + 
-        "<span class='glyphicon glyphicon-comment'></span> blogcommentNum 条评论" +
+        "<span class='glyphicon glyphicon-comment'></span>" +
+         getCommentsOfBlogSortByDate(thisAticle.id).length +
         "</a></div><div class='blog-real-content' id='article" + id + "'>" +  
         "</div></article>";
-        // var commentText = "<hr/><h3>Comments</h3>";
-        
-        $("#article-list").html("");
-        var artContent = ulText.replace(/blogtitle/,thisAticle.title).replace(/blogpublishDate/,thisAticle.publishDate)
-                            .replace(/blogcommentNum/,getCommentsOfBlogSortByDate(thisAticle.id).length);
-                            //  .append(commentText);
-        $("#article-list").append(artContent);
+      
+        $("#article-list").append(ulText);
         $("#article"+id).load(thisAticle.content);
-        
+        $("#load").hide();
+        $("#article-list").show();
     }
 </script>
