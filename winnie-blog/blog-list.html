@@ -17,9 +17,9 @@
         margin-right: 10px;
     }
 </style>
-<div class="color-grey" id="load"><h1>Loading</h1></div>
 <div id="article-list">
-    <article class="blog-content">
+    Loading...
+    <!--<article class="blog-content">
         <h3><a class="color-black-hover-grey no-underline font-tillana" onclick="loadThisArticle(artid);">blogtitle</a></h3>
         <div class="font-common">
             <label class="color-gray">blogpublishDate</label>
@@ -31,7 +31,7 @@
             blogintroduction
         </div>
         <a class="btn btn-default read-more" onclick="loadThisArticle(artid);">Read More>></a>
-    </article>
+    </article>-->
 </div>
 
 <script src="../resource/js/jquery-2.1.4.min.js"></script>
@@ -39,22 +39,28 @@
 <script>
     
     $(document).ready(function(){
-        $("#article-list").hide();
-        $("#load").show(); 
         loadArticles();
     });
     function loadArticles(){
         var arr = sorArticlesByDate(articleArr);
-        var text = $("#article-list").html();
         $("#article-list").html("");
         for(var i=0;i<arr.length;i++){
-            var artId =arr[i].id;
-            var artContent = text.replace(/blogtitle/,arr[i].title).replace(/blogpublishDate/,arr[i].publishDate).replace(/artid/g,artId)
-                            .replace(/blogcommentNum/,getCommentsOfBlogSortByDate(arr[i].id).length).replace(/blogintroduction/,arr[i].introduction);                         
-            $("#article-list").append(artContent);
+        
+            var ulText = "<article class='blog-content'>" +
+            "<h3><a class='color-black-hover-grey no-underline font-tillana'  onclick='loadThisArticle("+arr[i].id+");'>"+
+            arr[i].title +
+            "</a></h3>" + 
+            "<div class='font-common'>" + 
+            "<label class='color-gray'>"+
+            arr[i].publishDate +
+            "</label>" + 
+            "<a class='comments-number no-underline color-grey'  onclick='loadThisArticle("+arr[i].id+");'>" + 
+            "<span class='glyphicon glyphicon-comment'></span>" +
+            getCommentsOfBlogSortByDate(arr[i].id).length +
+            "条评论</a></div><div class='blog-real-content'>" +  arr[i].introduction +
+            "</div><a class='btn btn-default read-more' onclick='loadThisArticle("+arr[i].id+");'>Read More>></a></article>";                     
+            $("#article-list").append(ulText);
         }
-        $("#load").hide();
-        $("#article-list").show();
     }
     function loadThisArticle(id){
         var thisAticle = getArticleById(id);
@@ -70,12 +76,10 @@
         "<a class='comments-number no-underline color-grey'>" + 
         "<span class='glyphicon glyphicon-comment'></span>" +
          getCommentsOfBlogSortByDate(thisAticle.id).length +
-        "</a></div><div class='blog-real-content' id='article" + id + "'>" +  
+        "条评论</a></div><div class='blog-real-content' id='article" + id + "'>" +  
         "</div></article>";
       
         $("#article-list").append(ulText);
         $("#article"+id).load(thisAticle.content);
-        $("#load").hide();
-        $("#article-list").show();
     }
 </script>

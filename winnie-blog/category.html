@@ -1,10 +1,5 @@
 <div id="category-list">
-    <div class="category-content">
-        <h3 class="color-black font-tillana">dateYear</h3>
-        <ul>
-            categorydatelist
-        </ul>
-    </div>
+    Loading...
 </div>
 <script src="../resource/js/jquery-2.1.4.min.js"></script>
 <script src="data/article.js"></script>
@@ -12,12 +7,7 @@
     $(document).ready(function(){
         loadCategoryDate();
     });
-    function loadCategoryDate() {
-        var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
-                "publishDate" +
-                "</span><a class='color-black font-tillana font-not-large' >" +
-                "blogtitle" +
-                "</a></li>";
+    function loadCategoryDate() {  
 
         var arr = listArticleYears();
         var text = $("#category-list").html();
@@ -27,9 +17,15 @@
             var artArr = getArticleByYear(arr[i]);
             var ulText = "";
             for(var j=0;j<artArr.length;j++){
-                ulText += ulHtml.replace(/publishDate/,artArr[j].publishDate).replace(/blogtitle/,artArr[j].title);
+                var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
+                artArr[j].publishDate +
+                "</span><a class='color-black font-tillana font-not-large' >" +
+                artArr[j].title +
+                "</a></li>";
+                ulText += ulHtml;
             }
-            var categoryContent = text.replace(/dateYear/,arr[i]).replace(/categorydatelist/,ulText);
+            var categoryContent ="<div class='category-content'><h3 class='color-black font-tillana'>" +
+                    arr[i] + "</h3><ul>" + ulText + "</ul></div>";
 
             $("#category-list").append(categoryContent);
         }
