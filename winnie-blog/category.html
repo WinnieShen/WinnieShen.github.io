@@ -1,0 +1,37 @@
+<div id="category-list">
+    <div class="category-content">
+        <h3 class="color-black font-tillana">dateYear</h3>
+        <ul>
+            categorydatelist
+        </ul>
+    </div>
+</div>
+<script src="../resource/js/jquery-2.1.4.min.js"></script>
+<script src="data/article.js"></script>
+<script>
+    $(document).ready(function(){
+        loadCategoryDate();
+    });
+    function loadCategoryDate() {
+        var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
+                "publishDate" +
+                "</span><a class='color-black font-tillana font-not-large' >" +
+                "blogtitle" +
+                "</a></li>";
+
+        var arr = listArticleYears();
+        var text = $("#category-list").html();
+        $("#category-list").html("");
+
+        for(var i=0;i<arr.length;i++){
+            var artArr = getArticleByYear(arr[i]);
+            var ulText = "";
+            for(var j=0;j<artArr.length;j++){
+                ulText += ulHtml.replace(/publishDate/,artArr[j].publishDate).replace(/blogtitle/,artArr[j].title);
+            }
+            var categoryContent = text.replace(/dateYear/,arr[i]).replace(/categorydatelist/,ulText);
+
+            $("#category-list").append(categoryContent);
+        }
+    }
+</script>

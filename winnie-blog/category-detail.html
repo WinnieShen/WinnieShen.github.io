@@ -1,0 +1,41 @@
+<div id="category-detail-list">
+    <div class="category-content" *ngFor="let categoryDetail of categoryDetails">
+        <h3 class="color-black font-tillana">categorydetailname</h3>
+        <ul>
+            categorydetaillist
+        </ul>
+    </div>
+</div>
+<script src="../resource/js/jquery-2.1.4.min.js"></script>
+<script src="data/category-detail.js"></script>
+<script src="data/article.js"></script>
+<script>
+    $(document).ready(function(){
+        loadCategoryDetail();
+    });
+    function loadCategoryDetail() {
+        var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
+                "publishDate" +
+                "</span><a class='color-black font-tillana font-not-large' >" +
+                "blogtitle" +
+                "</a></li>";
+
+        var arr = sortCategoryDetailByDate(categoryDetailArr);
+        var text = $("#category-detail-list").html();
+        $("#category-detail-list").html("");
+
+        for(var i=0;i<arr.length;i++){
+            var artArr = getArticleByCategoryDetail(arr[i].id);
+            var ulText = "";
+            if(artArr.length == 0){
+                ulText = "该分类下尚未添加文章。";
+            }
+            for(var j=0;j<artArr.length;j++){
+                ulText += ulHtml.replace(/publishDate/,artArr[j].publishDate).replace(/blogtitle/,artArr[j].title);
+            }
+            var categoryContent = text.replace(/categorydetailname/,arr[i].name).replace(/categorydetaillist/,ulText);
+
+            $("#category-detail-list").append(categoryContent);
+        }
+    }
+</script>

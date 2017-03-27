@@ -1,0 +1,74 @@
+<style>
+    article{
+        color: #444444;
+        padding-bottom: 40px;
+        font-family: "Microsoft YaHei UI",SimHei,sans-serif;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    .comments-number{
+        float: right;
+        margin-right: 20px;
+    }
+    .read-more{
+        font-family: "Microsoft YaHei", sans-serif;
+        color:#6E7173;
+        float: right;
+        margin-right: 10px;
+    }
+</style>
+<div id="article-list">
+    <article class="blog-content">
+        <h3><a class="color-black-hover-grey no-underline font-tillana" onclick="loadThisArticle(artid);">blogtitle</a></h3>
+        <div class="font-common">
+            <label class="color-gray">blogpublishDate</label>
+            <a class="comments-number no-underline color-grey" onclick="loadThisArticle(artid);">
+                <span class="glyphicon glyphicon-comment"></span>blogcommentNum 条评论
+            </a>
+        </div>
+        <div class="blog-real-content">
+            blogintroduction
+        </div>
+        <a class="btn btn-default read-more" onclick="loadThisArticle(artid);">Read More>></a>
+    </article>
+</div>
+
+<script src="../resource/js/jquery-2.1.4.min.js"></script>
+<script src="data/article.js"></script>
+<script>
+    
+    $(document).ready(function(){
+        loadArticles();
+    });
+    function loadArticles(){
+        var arr = sorArticlesByDate(articleArr);
+        var text = $("#article-list").html();
+        $("#article-list").html("");
+        for(var i=0;i<arr.length;i++){
+            var artId =arr[i].id;
+            var artContent = text.replace(/blogtitle/,arr[i].title).replace(/blogpublishDate/,arr[i].publishDate).replace(/artid/g,artId)
+                            .replace(/blogcommentNum/,getCommentsOfBlogSortByDate(arr[i].id).length).replace(/blogintroduction/,arr[i].introduction);                         
+            $("#article-list").append(artContent);
+        }
+    }
+    function loadThisArticle(id){
+        var thisAticle = getArticleById(id);
+        var ulText = "<article class='blog-content'>" +
+        "<h3><a class='color-black-hover-grey no-underline font-tillana'>blogtitle</a></h3>" + 
+        "<div class='font-common'>" + 
+        "<label class='color-gray'>blogpublishDate</label>" + 
+        "<a class='comments-number no-underline color-grey'>" + 
+        "<span class='glyphicon glyphicon-comment'></span> blogcommentNum 条评论" +
+        "</a></div><div class='blog-real-content' id='article" + id + "'>" +  
+        "</div></article>";
+        // var commentText = "<hr/><h3>Comments</h3>";
+        
+        $("#article-list").html("");
+        var artContent = ulText.replace(/blogtitle/,thisAticle.title).replace(/blogpublishDate/,thisAticle.publishDate)
+                            .replace(/blogcommentNum/,getCommentsOfBlogSortByDate(thisAticle.id).length);
+                            //  .append(commentText);
+        $("#article-list").append(artContent);
+        $("#article"+id).load(thisAticle.content);
+        
+    }
+</script>

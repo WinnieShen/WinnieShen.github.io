@@ -1,0 +1,173 @@
+<div class="paragraph">
+    大家都知道，Linux是一套免费使用和自由传播的类Unix操作系统，如果你对linux还不是很熟，建议大家可以去看看我的另一篇
+    博客，名为<a href="linux-basic-knowledge.html">Linux 基础知识</a>,可以帮助你初步了解linux一些特性。
+</div>
+<h4 id="num1">1.cd命令</h4>
+<pre>
+<span class="tag">cd /root/Docements</span> 切换到目录/root/Docements
+<span class="tag">cd ./path</span>          切换到当前目录下的path目录中，“.”表示当前目录
+<span class="tag">cd ../path</span>         切换到上层目录中的path目录中，“..”表示上一层目录
+</pre>
+<h4 id="num2">2.ls命令</h4>
+<pre>
+<span class="tag">ls -l</span>  列出长数据串，包含文件的属性与权限数据等
+<span class="tag">ls -a</span>  列出全部的文件，连同隐藏文件（开头为.的文件）一起列出来（常用）
+<span class="tag">ls -d</span>  仅列出目录本身，而不是列出目录的文件数据
+<span class="tag">ls -h</span>  将文件容量以较易读的方式（GB，kB等）列出来
+<span class="tag">ls -R</span>  连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来
+
+<span class="tag">ls -lR</span> 以长数据串的形式列出当前目录下的所有文件
+</pre>
+<h4 id="num3">3.date/time命令</h4>
+<pre>
+<span class="tag">date</span> print the system date and time
+<span class="tag">date -s "yyyy-mm-dd hh:m:ss"</span> set the system date and time
+<span class="tag">time ./process</span>
+<span class="tag">time ps aux</span>
+</pre>
+<h4 id="num4">4.cp命令</h4>
+<pre>
+<span class="tag">cp -a</span>  将文件的特性一起复制
+<span class="tag">cp -p</span>  连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份
+<span class="tag">cp -i</span>  若目标文件已经存在时，在覆盖时会先询问操作的进行
+<span class="tag">cp -r</span>  递归持续复制，用于目录的复制行为
+<span class="tag">cp -u</span>  目标文件与源文件有差异时才会复制
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">cp -a file1 file2</span>         连同文件的所有特性把文件file1复制成文件file2
+<span class="tag">cp file1 file2 file3 dir</span>  把文件file1、file2、file3复制到目录dir中
+</pre>
+<h4 id="num5">5.scp命令</h4>
+<div class="section">scp是用于局域网内跨ip进行copy的命令</div>
+<pre>
+<span class="tag">scp /home/code/file 10.32.172.151:/usr/path</span>
+    将本地目录/home/code/下的file copy到ip为10.32.172.151下的/usr/path路径下
+</pre>
+<h4 id="num6">6.rm命令</h4>
+<pre>
+-f ：就是force的意思，忽略不存在的文件，不会出现警告消息
+-i ：互动模式，在删除前会询问用户是否操作
+-r ：递归删除，最常用于目录删除，它是一个非常危险的参数
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">rm -i file</span>  删除文件file，在删除之前会询问是否进行该操作
+<span class="tag">rm -fr dir</span>  强制删除目录dir中的所有文件
+</pre>
+<h4 id="num7">7.ps命令</h4>
+<pre>
+-A ：所有的进程均显示出来
+-a ：不与terminal有关的所有进程
+-u ：有效用户的相关进程
+-x ：一般与a参数一起使用，可列出较完整的信息
+-l ：较长，较详细地将PID的信息列出
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">ps aux</span>  查看系统所有的进程数据
+<span class="tag">ps ax</span>   查看不与terminal有关的所有进程
+<span class="tag">ps -lA</span>  查看系统所有的进程数据
+<span class="tag">ps axjf</span> 查看连同一部分进程树状态
+</pre>
+<h4 id="num8">8.kill/killall命令</h4>
+<div class="section">kill命令用于向某个工作（%jobnumber）或者是某个PID（数字）传送一个信号，它通常与ps和jobs命令一起使用。</div>
+<pre>
+<span class="tag">kill -signal PID</span>
+</pre>
+<div>signal的常用参数如下(最前面的数字为信号的代号，使用时可以用代号代替相应的信号。)</div>
+<pre>
+1：SIGHUP，启动被终止的进程
+2：SIGINT，相当于输入ctrl+c，中断一个程序的进行
+9：SIGKILL，强制中断一个进程的进行
+15：SIGTERM，以正常的结束进程方式来终止进程
+17：SIGSTOP，相当于输入ctrl+z，暂停一个进程的进行
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">kill -SIGTERM %1</span>
+    以正常的结束进程方式来终于第一个后台工作，可用jobs命令查看后台中的第一个工作进程
+<span class="tag">kill -SIGHUP PID</span>
+    重新改动进程ID为PID的进程，PID可用ps命令通过管道命令加上grep命令进行筛选获得
+</pre>
+<div class="section">killall命令用于向一个命令启动的进程发送一个信号</div>
+<pre>
+<span class="tag">killall [-iIe] [command name]</span>
+</pre>
+<h4 id="num9">9.file命令</h4>
+<pre>
+<span class="tag">file ./test</span>
+</pre>
+<h4 id="num10">10.tar命令</h4>
+<pre>
+-c ：新建打包文件
+-t ：查看打包文件的内容含有哪些文件名
+-x ：解打包或解压缩的功能，可以搭配-C(大写)指定解压的目录(注意-c,-t,-x不能同时出现在同一条命令中)
+-j ：通过bzip2的支持进行压缩/解压缩
+-z ：通过gzip的支持进行压缩/解压缩
+-v ：在压缩/解压缩过程中，将正在处理的文件名显示出来
+-C dir ：指定压缩/解压缩的目录dir
+-f filename ：filename为要处理的文件
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">tar -jcv -f filename.tar.bz2 ..(要被处理的文件或目录名称)</span> 压缩
+<span class="tag">tar -jtv -f filename.tar.bz2</span>  查询
+<span class="tag">tar -jxv -f filename.tar.bz2 -C ..(欲解压缩的目录)</span>  解压
+</pre>
+<h4 id="num11">11.cat命令</h4>
+<pre>
+<span class="tag">cat text | less</span> 查看text文件中的内容(注：这条命令也可以使用less text来代替)
+</pre>
+<h4 id="num12">12.chgrp命令</h4>
+<pre>
+<span class="tag">chgrp [-R] dirname/filename</span> (-R ：进行递归的持续对所有文件和子目录更改)
+<span class="tag">chgrp users -R ./dir</span>  递归地把dir目录下中的所有文件和子目录下所有文件的用户组修改为users
+</pre>
+<h4 id="num13">13.chown命令</h4>
+<div class="section">
+    该命令用于改变文件的所有者，与chgrp命令的使用方法相同，只是修改的文件属性不同。
+</div>
+<h4 id="num14">14.chmod命令</h4>
+<pre>
+<span class="tag">chmod [-R] xyz</span>   文件或目录(-R：进行递归的持续更改，即连同子目录下的所有文件都会更改)
+<span class="tag">chmod 0755 file</span>  把file的文件权限改变为-rxwr-xr-x
+<span class="tag">chmod g+w file</span>   向file的文件权限中加入用户组可写权限
+</pre>
+<h4 id="num15">15.vim命令</h4>
+<div class="section">
+    该命令主要用于文本编辑，它接一个或多个文件名作为参数，如果文件存在就打开，如果文件不存在就以该文件名创建一个文件。
+    它里面有很多非常好用的命令，在这里不再多说。后面会具体讲vim下的文件操作命令。
+</div>
+
+<h4 id="num16">16.gcc命令</h4>
+<pre>
+-o ：output之意，用于指定生成一个可执行文件的文件名
+-c ：用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序
+-I ：增加编译时搜索头文件的路径
+-L ：增加编译时搜索静态连接库的路径
+-S ：把源文件生成汇编代码文件
+-lm：表示标准库的目录中名为libm.a的函数库
+-lpthread ：连接NPTL实现的线程库
+-std= ：用于指定把使用的C语言的版本
+</pre>
+<div class="section">eg.</div>
+<pre>
+<span class="tag">gcc -o test test.c -lm -std=c99</span>  把源文件test.c按照c99标准编译成可执行程序test
+<span class="tag">gcc -S test.c</span>  把源文件test.c转换为相应的汇编程序源文件test.s
+</pre>
+<h4 id="num30">30.其他一些命令</h4>
+<pre>
+<span class="tag">passwd</span> print or set the system date and time (用passwd -h查看)
+<span class="tag">logout, login</span> 登录shell的登录和注销命令
+<span class="tag">pwd</span> print or set the system date and time
+</pre>
+<div class="section">与user及user group相关</div>
+<pre>
+<span class="tag">groupadd test1</span>         添加组名test1
+<span class="tag">vi(cat) /etc/group</span>     查看所有组的信息
+<span class="tag">cat /etc/passwd</span>        查看所有组及其中的用户信息
+<span class="tag">useradd</span>                添加用户命令
+<span class="tag">useradd -g test1 test2</span> 其中test1为组名，test2为用户名
+<span class="tag">passwd test2</span>           给用户名test2的用户设密码
+</pre>

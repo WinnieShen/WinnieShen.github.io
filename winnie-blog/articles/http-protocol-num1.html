@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux命令之二：find/grep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=0" />
+    <link href="../../bootstrap-dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/common.css" rel="stylesheet"/>
+    <link href="../../winnieBlog/css/style.css" rel="stylesheet"/>
+    <link href="../../winnieBlog/css/blog-real-content-style.css" rel="stylesheet"/>
+    <style>
+        .nav-home-page{
+            border: 1px #EEEEEE;
+            border-top-style: solid;
+            border-left-style: solid;
+            line-height: 40px;
+        }
+        .nav-category{
+            border: 1px #EEEEEE;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            line-height: 40px;
+        }
+        #category-link:hover{
+            border-bottom-color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div class="container">
+        <header class="blog-owner">
+            <h1><a href="../index.html">Winnie's Blog</a></h1>
+        </header>
+        <div class="row nav-content">
+            <div class="col-lg-9 nav-line">个性签名：这世界本没有路，走的人多了，就成了路。</div>
+            <div class="col-lg-1 nav-home-page" id="home-page-link">
+                <a href="../index.html"><span class="glyphicon glyphicon-home"></span>首页</a>
+            </div>
+            <div class="col-lg-1 nav-category" id="category-link">
+                <a href="../category.html"><span class="glyphicon glyphicon-folder-close"></span>分类</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 left-bar">
+                <article class="blog-content">
+                    <h3>Linux命令之二：find/grep</h3>
+                    <div id="details">
+                        <label class="blog-publish-time">2016.12.23</label>
+                        <a href="javascript:void(0);" class="comments-number">
+                            <i class="icon-comment-alt"></i>2条评论
+                        </a>
+                    </div>
+                    <div class="blog-real-content">
+                        <div class="paragraph">
+                            HTTP 是基于TCP/IP协议的应用层协议。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口(HTTPS是443)。由于其简捷、快速的方式，
+                            适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。当前最新版本为2015年5月作为互联网标准正式发布的HTTP/2，替换HTTP 1.1成为HTTP的实现标准。
+                        </div>
+                        <img src="../images/http1.jpg" />
+                        <div class="section">
+                            <h4 id="num1">1.历史版本</h4>
+                            <div class="paragraph">
+                                <b>HTTP/0.9</b> 已过时。只接受 GET 一种请求方法，没有在通讯中指定版本号，且不支持请求头。由于该版本不支持 POST 方法，所以客户端无法向服务器传递太多信息。
+                            </div>
+                            <div class="paragraph">
+                                <b>HTTP/1.0</b> 这是第一个在通讯中指定版本号的HTTP协议版本，至今仍被广泛采用，特别是在代理服务器中。
+                            </div>
+                            <div class="paragraph">
+                                <b>HTTP/1.1</b> 持久连接被默认采用，并能很好地配合代理服务器工作。还支持以管道方式在同时发送多个请求，以便降低线路负载，提高传输速度。<br/>
+                                HTTP/1.1相较于HTTP/1.0协议的区别主要体现在：
+                                <ul>
+                                    <li>缓存处理</li>
+                                    <li>带宽优化及网络连接的使用</li>
+                                    <li>错误通知的管理</li>
+                                    <li>消息在网络中的发送</li>
+                                    <li>互联网地址的维护</li>
+                                    <li>安全性及完整性</li>
+                                </ul>
+                            </div>
+                            <div class="paragraph">
+                                <b>HTTP/2</b> 不叫HTTP/2.0，是因为标准委员会不打算再发布子版本了，下一个新版本将是 HTTP/3，是HTTP协议的的第二个主要版本，下面会有具体介绍。
+                            </div>
+                        </div>
+                        <div class="section">
+                            <h4 id="num2">2.HTTP/0.9简介(了解就行)</h4>
+                            <div class="paragraph">
+                                最早版本是1991年发布的0.9版。该版本极其简单，只有一个命令<span class="btn-danger"> GET </span> .
+                            </div>
+<pre>
+GET /index.html
+</pre>
+                            <div class="paragraph">
+                                以上表示 TCP 连接（connection）建立后，客户端向服务器请求（request）网页index.html，协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。
+                            </div>
+<pre>
+<span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;body&gt;</span>Hello World<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
+                            <div class="paragraph">
+                                服务器发送完毕，就关闭TCP连接。
+                            </div>
+                            <div class="section">
+                                <h4 id="num3">3.HTTP/1.0</h4>
+                                <h5><b>3.1 简介</b></h5>
+                                <div class="paragraph">
+                                    1996年5月，HTTP/1.0 版本发布，内容大大增加：
+                                    <ul>
+                                        <li>
+                                            <b>任何格式的内容都可以发送。</b>这使得互联网不仅可以传输文字，还能传输图像、视频、二进制文件。这为互联网的大发展奠定了基础。</li>
+                                        <li>
+                                            除了<span class="btn-danger"> GET </span>命令，还引入了<span class="btn-danger"> POST </span>命令和<span class="btn-danger"> HEAD </span>命令，丰富了浏览器与服务器的互动手段。
+                                        </li>
+                                        <li><b>请求和回应的格式变了。</b>除了数据部分，每次通信都必须包括头信息（HTTP header），用来描述一些元数据。</li>
+                                        <li>
+                                            其他的新增功能还包括<b>状态码(status code)、多字符集支持、多部分发送(multi-part type)、权限(authorization)、缓存(cache)、内容编码(content encoding)</b>等。
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h5><b>3.2 请求格式</b></h5>
+<pre>
+GET / HTTP/1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)
+Accept: */*
+</pre>
+                                <h5><b>3.3 回应格式</b></h5>
+<pre>
+HTTP/1.0 200 OK
+Content-Type: text/plain
+Content-Length: 137582
+Expires: Thu, 05 Dec 1997 16:00:00 GMT
+Last-Modified: Wed, 5 August 1996 15:55:28 GMT
+Server: Apache 0.84
+
+<span class="tag">&lt;html&gt;</span>
+<span class="tag">&lt;body&gt;</span>Hello World<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre>
+                                <div class="paragraph">
+                                    回应的格式是"头信息 + 一个空行（\r\n） + 数据"。其中，第一行是"协议版本 + 状态码（status code） + 状态描述"。
+                                </div>
+                                <h5><b>3.4 Content-Type 字段</b></h5>
+                                <div class="paragraph">
+                                    关于字符的编码，1.0版规定，头信息必须是 ASCII 码，后面的数据可以是任何格式。因此，服务器回应的时候，必须告诉客户端，数据是什么格式，这就是Content-Type字段的作用。
+                                    下面是一些常见的Content-Type字段的值:
+                                    <ul>
+                                        <li>text/plain</li>
+                                        <li>text/html</li>
+                                        <li>text/css</li>
+                                        <li>image/jpeg</li>
+                                        <li>image/png</li>
+                                        <li>image/svg+xml</li>
+                                        <li>audio/mp4</li>
+                                        <li>video/mp4</li>
+                                        <li>application/javascript</li>
+                                        <li>application/pdf</li>
+                                        <li>application/zip</li>
+                                        <li>application/atom+xml</li>
+                                    </ul>
+                                </div>
+                                <div class="paragraph">
+                                    这些数据类型总称为<span class="btn-danger"> MIME type </span>，每个值包括一级类型和二级类型，之间用斜杠分隔。
+                                    除了预定义的类型，厂商也可以自定义类型:
+                                    <ul>
+                                        <li>application/vnd.debian.binary-package</li>
+                                    </ul>
+                                </div>
+                                <div class="paragraph">
+                                    上面的类型表明，发送的是Debian系统的二进制数据包。MIME type还可以在尾部使用分号，添加参数。
+                                    <ul>
+                                        <li>Content-Type: text/html; charset=utf-8</li>
+                                    </ul>
+                                </div>
+                                <div class="paragraph">
+                                    上面的类型表明，发送的是网页，而且编码是<span class="btn-danger"> UTF-8 </span>.
+                                    客户端请求的时候，可以使用<span class="btn-danger"> Accept </span>字段声明自己可以接受哪些数据格式。
+<pre>
+Accept: */*
+</pre>
+
+                                    上面代码中，客户端声明自己可以接受任何格式的数据。<span class="btn-danger"> MIME type </span>不仅用在HTTP协议，还可以用在其他地方，比如HTML网页。
+                                </div>
+<pre>
+<span class="tag">&lt;meta</span> http-equiv="<span class="attr-val">Content-Type</span>" content="<span class="attr-val">text/html; charset=UTF-8</span>" <span class="tag">/&gt;</span>
+<span class="tag">&lt;meta</span> charset="<span class="attr-val">utf-8</span>" <span class="tag">/&gt;</span>
+</pre>
+                                <h5><b>3.5 Content-Encoding 字段</b></h5>
+                                <div class="paragraph">
+                                    由于发送的数据可以是任何格式，因此可以把数据压缩后再发送。<span class="btn-danger"> Content-Encoding </span>字段说明数据的压缩方法。
+                                </div>
+<pre>
+Content-Encoding: gzip
+Content-Encoding: compress
+Content-Encoding: deflate
+</pre>
+                                <div class="paragraph">
+                                    客户端在请求时，用<span class="btn-danger"> Accept-Encoding </span>字段说明自己可以接受哪些压缩方法。
+                                </div>
+<pre>
+Accept-Encoding: gzip, deflate
+</pre>
+                                <h5><b>3.6 缺点</b></h5>
+                                <div class="paragraph">
+                                    HTTP/1.0 版的主要缺点是，每个TCP连接只能发送一个请求。发送数据完毕，连接就关闭，如果还要请求其他资源，就必须再新建一个连接。
+                                </div>
+                                <div class="paragraph">
+                                    TCP连接的新建成本很高，因为需要客户端和服务器三次握手，并且开始时发送速率较慢（slow start）。所以，HTTP 1.0版本的性能比较差。
+                                    随着网页加载的外部资源越来越多，这个问题就愈发突出了。
+                                </div>
+                                <div class="paragraph">
+                                    为了解决这个问题，有些浏览器在请求时，用了一个非标准的<span class="btn-danger"> Connection </span>字段。
+                                </div>
+<pre>
+Connection: keep-alive
+</pre>
+                                <div class="paragraph">
+                                    这个字段要求服务器不要关闭TCP连接，以便其他请求复用。服务器同样回应这个字段。
+                                </div>
+<pre>
+Connection: keep-alive
+</pre>
+                                <div class="paragraph">
+                                    一个可以复用的TCP连接就建立了，直到客户端或服务器主动关闭连接。但是，这不是标准字段，不同实现的行为可能不一致，因此不是根本的解决办法。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <h4 id="num4">4.HTTP/1.1</h4>
+                            <h5><b>4.1 简介</b></h5>
+                            <div class="paragraph">
+
+                            </div>
+                        </div>
+                        <div class="section">To add more...</div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4 right-bar" id="right-bar-div">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="little-view-tags tag-home-page">
+    <a href="../../winnieBlog/index.html"><span class="glyphicon glyphicon-home"></span><div>首页</div></a>
+</div>
+<div class="little-view-tags tag-category">
+    <a href="../../winnieBlog/category.html"><span class="glyphicon glyphicon-folder-close"></span><div>分类</div></a>
+</div>
+<div class="tag-click-icon">
+    <span id="tag-show" class="glyphicon glyphicon-chevron-left"></span>
+    <span id="tag-hide" class="glyphicon glyphicon-chevron-right"></span>
+
+</div>
+<div class="panel-footer center" id="footer-module">
+    Copyright © 2016: Winnie Shen.
+</div>
+</body>
+<script src="../../js/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".blog-content button").click(function () {
+            location.href = $(this).attr("id") + ".html";
+        });
+        $("#right-bar-div").load("right-bar.html");
+
+        $("#tag-show").hide();
+        $("#tag-hide").click(function () {
+            $("#tag-hide").hide();
+            $("#tag-show").show();
+            $(".tag-home-page,.tag-category").hide();
+        });
+        $("#tag-show").click(function () {
+            $("#tag-show").hide();
+            $("#tag-hide").show();
+            $(".tag-home-page,.tag-category").show();
+        });
+    });
+</script>
+</html>

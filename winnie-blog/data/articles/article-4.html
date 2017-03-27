@@ -1,0 +1,37 @@
+<div class="paragraph">
+    find/grep 在linux命令中属于常用又实用的部分，而熟练的使用会为平时的工作学习提高不少效率。下面是我整理的find/grep的一些用法，不齐全的部分后续还会添加。
+</div>
+<div class="paragraph">
+    find和grep的使用权限是所有用户。
+</div>
+<h4 id="num1">1.find</h4>
+<div class="section">find命令的作用是在目录中根据文件名搜索文件</div>
+<pre>
+<span class="tag">find</span>           列出当前目录及其子目录的所有文件和文件夹的完整路径。
+<span class="tag">find -perm 755</span> 在当前目录及其子目录中查找指定权限的文件
+<span class="tag">find -type b</span>   在当前目录及其子目录下查找块设备文件。
+<span class="tag">find -type d</span>   在当前目录及其子目录下查文件夹。
+<span class="tag">find -type c</span>   在当前目录及其子目录下查找字符设备文件。
+<span class="tag">find -type p</span>   在当前目录及其子目录下查找管道文件。
+<span class="tag">find -type l</span>   在当前目录及其子目录下查找符号链接文件。
+<span class="tag">find -type f</span>   在当前目录及其子目录下查找普通文件。
+</pre>
+<pre>
+<span class="tag">find -name Help.java</span>     在当前目录及其子目录中搜索文件名为Help.java的文件。
+<span class="tag">find . -name Help.java</span>   在当前目录及其子目录中搜索文件名为Help.java的文件(同上)。
+<span class="tag">find / -name Help.java</span>   在整个硬盘中搜索文件名为Help.java的文件。
+</pre>
+<pre>
+<span class="tag">find -type d -exec ls -l {} \;</span>
+    查找当前目录及其子目录下的文件夹，并将查找结果以ls -l的方式展现。
+<span class="tag">find -type d -ok rm -rf {} \;</span>
+    查找当前目录及其子目录下的文件夹，并将查找结果依次执行rm -rf命令，但是在执行命令前会有确认提示。
+</pre>
+<h4 id="num2">2.grep</h4>
+<div class="section">grep命令的作用是在目录中根据文件内容搜索文件</div>
+<pre>
+<span class="tag">grep Clock *</span>     查找当前目录下的所有文件中包含Clock字符串的文件，不查找子目录
+<span class="tag">grep -r Clock *</span>  查找当前目录下的所有文件中包含Clock字符串的文件，查找子目录
+<span class="tag">grep -nr Clock *</span> 查找当前目录下的所有文件中包含Clock字符串的文件，查找子目录，并显示行号
+</pre>
+<div class="section">To add more...</div>

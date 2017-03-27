@@ -1,0 +1,156 @@
+@import 'https://fonts.googleapis.com/css?family=Candal'; /* font-family: 'Candal', sans-serif;*/
+@import 'https://fonts.googleapis.com/css?family=Josefin+Sans';/*font-family: 'Josefin Sans', sans-serif; */
+@import 'https://fonts.googleapis.com/css?family=Indie+Flower';/*font-family: 'Indie Flower', cursive; */
+@import 'https://fonts.googleapis.com/css?family=Tillana';/*font-family: 'Tillana', cursive;*/
+@import 'https://fonts.googleapis.com/css?family=Patua+One';/*font-family: 'Patua One', cursive; */
+@import 'https://fonts.googleapis.com/css?family=Uncial+Antiqua';
+body,html{
+    width:100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+a{
+    cursor: pointer;
+}
+/*a underline*/
+a.no-underline,a.no-underline:hover{
+    text-decoration: none;
+}
+
+a.hover-underline{
+    text-decoration: none;
+}
+a.hover-underline:hover{
+    text-decoration:underline;
+}
+/*a color*/
+a.color-grey,a.color-grey:hover{
+    color: #6E7173;
+}
+a.color-grey-hover-black{
+    color: #6E7173;
+}
+a.color-grey-hover-black:hover{
+    color: black;
+}
+
+a.color-black,a.color-black:hover{
+    color: #555555;
+}
+a.color-real-black,a.color-real-black:hover{
+    color: black;
+}
+
+a.color-black-hover-grey{
+    color: #555555;
+}
+a.color-black-hover-grey:hover{
+    color: #6E7173;
+}
+
+a.color-light-blue,a.color-light-blue:hover{
+    color: #80A6CD;
+}
+
+/*font-family*/
+.font-tillana{
+    font-family: 'Tillana',"Microsoft YaHei", cursive;
+}
+.font-josefin-sans{
+    font-family: 'Josefin Sans',"Microsoft YaHei", sans-serif;
+}
+.font-candal{
+    font-family: 'Candal', sans-serif;
+}
+.font-indie-flower{
+    font-family: 'Indie Flower', cursive;
+}
+.font-yahei{
+    font-family: "Microsoft YaHei", sans-serif;
+}
+.font-simhei{
+    font-family: SimHei, sans-serif;
+}
+/*font-size*/
+.font-common{
+    font-size: 14px;
+}
+.font-smaller{
+    font-size: 12px;
+}
+.font-not-large{
+    font-size: 15px;
+}
+.font-larger{
+    font-size: 16px;
+}
+.font-more-larger{
+    font-size: 18px;
+}
+.color-gray{
+    color: #7B7D7F;
+}
+.color-black{
+    color: #555555;
+}
+.color-real-black{
+    color: black;
+}
+
+.outer-space-right-ten{
+    margin-right: 10px;
+}
+.inner-space-two{
+    padding: 2px;
+}
+ul.no-list-style{
+    list-style-type: none;
+}
+.clr{
+    clear: both;
+}
+.glyphicon{
+    margin-right: 8px;
+}
+.center{
+    text-align: center;
+}
+#wrap{
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto -40px;
+    padding-bottom: 60px;
+}
+#base-wrap{
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto -40px;
+    padding-bottom: 60px;
+    background-color: #e74c3c;
+    color: #fff;
+}
+.tag-personal-page{
+    width: 100px;
+    height: 60px;
+    line-height: 60px;
+    position: fixed;
+    border: 1px solid white;
+    background-color: #F5F5F5;
+    text-align: center;
+    bottom: 60px;
+    right: 0;
+    font-family: "Microsoft YaHei UI",sans-serif;
+}
+.tag-personal-page a{
+    color: #6E7173;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#footer-module{
+    background-color: #e74c3c;
+    border: 0;
+    color: #fff;
+}
