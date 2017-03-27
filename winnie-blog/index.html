@@ -124,6 +124,17 @@
 <script src="data/user.js"></script>
 <script>
     $(document).ready(function(){
+        $("#tag-show").hide();
+        $("#tag-hide").click(function () {
+            $("#tag-hide").hide();
+            $("#tag-show").show();
+            $(".tag-home-page,.tag-category").hide();
+        });
+        $("#tag-show").click(function () {
+            $("#tag-show").hide();
+            $("#tag-hide").show();
+            $(".tag-home-page,.tag-category").show();
+        });
         $("#blog-inside-bar").load("blog-list.html");
         loadCategoryDetailList();
         loadNewArticles();
