@@ -158,7 +158,7 @@
     function loadCategoryDetailList(){
         var cateArr = sortCategoryDetailByDate(categoryDetailArr);
         for(var i=0;i<cateArr.length;i++){
-            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common'>"+  cateArr[i].name + "</a></li>";
+            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadCategoryDetail();'>"+  cateArr[i].name + "</a></li>";
             $("#category-detail").append(lilink);
         }
     }
@@ -166,7 +166,7 @@
     function loadNewArticles(){
         var artArr = getFourLatestArticles();
         for(var i=0;i<artArr.length;i++){
-            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common'>"+  artArr[i].title + "</a></li>";
+            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadOneArticle("+ artArr[i].id +")'>"+  artArr[i].title + "</a></li>";
             $("#new-articles").append(lilink);
         }
     }
@@ -174,11 +174,34 @@
     function loadNewComments(){
         var comArr = getThreeLatestComments();
         for(var i=0;i<comArr.length;i++){
-            var lilink = "<li><a class='comment-user color-grey-hover-black no-underline font-common font-yahei'>" + getUserById(comArr[i].userId).name + "</a>"
-                        +"<div class='font-smaller color-gray ellipsis-one-line-style'>" + "<span style='margin-right:10px;'>" + comArr[i].createDate+ "</span>" + " <a class='color-grey-hover-black no-underline'>"
+            var lilink = "<li><a class='comment-user color-grey-hover-black no-underline font-common font-yahei' onclick='loadOneArticle("+ comArr[i].blogId +")'>" 
+                        + getUserById(comArr[i].userId).name + "</a>"
+                        + "<div class='font-smaller color-gray ellipsis-one-line-style'>" + "<span style='margin-right:10px;'>" + comArr[i].createDate+ "</span>" 
+                        + "<a class='color-grey-hover-black no-underline' onclick='loadOneArticle("+ comArr[i].blogId +")'>"
                         + getArticleById(comArr[i].blogId).title + "</a></div><div class='color-real-black font-common font-simhei ellipsis-style'>" + comArr[i].content + "</div></li>";
             $("#new-comments").append(lilink);
         }
+    }
+    function loadOneArticle(id){
+        var thisAticle = getArticleById(id);
+        $("#blog-inside-bar").html("");
+        var ulText = "<article class='blog-content'>" +
+        "<h3><a class='color-black-hover-grey no-underline font-tillana'>"+
+        thisAticle.title +
+        "</a></h3>" + 
+        "<div class='font-common'>" + 
+        "<label class='color-gray'>"+
+        thisAticle.publishDate +
+         "</label>" + 
+        "<a class='comments-number no-underline color-grey'>" + 
+        "<span class='glyphicon glyphicon-comment'></span>" +
+         getCommentsOfBlogSortByDate(thisAticle.id).length +
+        "条评论</a></div><div class='blog-real-content' id='article" + id + "'>" +  
+        "</div></article>";
+      
+        $("#blog-inside-bar").append(ulText);
+        $("#article"+id).load(thisAticle.content);
+        $("#nav-page").hide();
     }
 </script>
 </html>
