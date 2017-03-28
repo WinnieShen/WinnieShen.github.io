@@ -66,13 +66,11 @@
         $("#nav-page").html(navHead + navContent + navfoot);
         $("#page1").addClass("active");
     }
-    function loadArticlesByPage(currentPage,pagesNum){  
-        console.log("enter.");  
+    function loadArticlesByPage(currentPage,pagesNum){
         if(currentPage<=0 || currentPage >pagesNum){
             return;
         }
         currentPageNum = currentPage;
-        console.log("currentPageNum:" + currentPageNum);
         var arr = sorArticlesByDate(articleArr);
         $("#article-list").html("");
         if(pagesNum == 1){

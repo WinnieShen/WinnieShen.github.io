@@ -1,7 +1,8 @@
-<div class="paragraph">
-    在前端技术日新月异的今天，浏览器兼容已经成为一个重要问题，那么CSS中实现的样式，也需要考虑到浏览器的兼容，那么，我们今天来探讨一下垂直居中的方式，以及在不同浏览器的实现情况。
-</div>
-<h4 id="num1">1.设置 display:table</h4>
+<div class="section">
+    <div class="paragraph">
+        在前端技术日新月异的今天，浏览器兼容已经成为一个重要问题，那么CSS中实现的样式，也需要考虑到浏览器的兼容，那么，我们今天来探讨一下垂直居中的方式，以及在不同浏览器的实现情况。
+    </div>
+    <h4 id="num1">1.设置 display:table</h4>
 <pre>
 <span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"wrapper"</span><span class="tag">&gt;</span>
     <span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"cell"</span><span class="tag">&gt;</span>
@@ -13,6 +14,9 @@
 </pre>
 <pre>
 <span class="css-attr">#wrapper</span> {
+    <span class="attr">width</span>: <span class="attr-val">400px</span>;
+    <span class="attr">height</span>: <span class="attr-val">200px</span>;
+    <span class="attr">background-color</span>: <span class="attr-val">orange</span>;
     <span class="attr">display</span>: <span class="attr-val">table</span>;
 }
 
@@ -21,6 +25,97 @@
     <span class="attr">vertical-align</span>: <span class="attr-val">middle</span>;
 }
 </pre>
-<div class="paragraph"><a href="data/articles/see-result/article-9-1.html" target="view_window">点击运行查看效果</a></div>
-<div>支持浏览器:Firefox,chrome,IE9+</div>
-<h4 id="num2">2.设置 position:absoulte</h4>
+    <div class="paragraph">支持浏览器:Firefox,chrome,IE8+,Safari等，但是标签太过繁杂，在content的高度不确定的情况下，可以使用。</div>
+    <div class="paragraph"><a href="data/articles/see-result/article-9/article-9-1.html" target="view_window">点击查看运行效果</a></div>
+</div>
+<div class="section">
+    <h4 id="num2">2.设置 position:absoulte</h4>
+<pre>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">class</span>=<span class="attr-val">"content"</span><span class="tag">&gt;</span><span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+</pre>
+<pre>
+<span class="css-attr">.content</span> {
+    <span class="attr">background-color</span>: <span class="attr-val">orange</span>;
+    <span class="attr">height</span>: <span class="attr-val">240px</span>;
+    <span class="attr">width</span>: <span class="attr-val">100px</span>;
+    <span class="attr">position</span>: <span class="attr-val">absolute</span>;
+    <span class="attr">top</span>: <span class="attr-val">50%</span>;
+    <span class="attr">margin-top</span>: <span class="attr-val">-120px</span>;
+}
+</pre>
+    <div class="paragraph">支持浏览器:基本适用于所有的浏览器，在content的高度已知的情况下，可以使用。</div>
+    <div class="paragraph"><a href="data/articles/see-result/article-9/article-9-2.html" target="view_window">点击查看运行效果</a></div>
+</div>
+<div class="section">
+    <h4 id="num3">3.line-height</h4>
+<pre>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">class</span>=<span class="attr-val">"content"</span><span class="tag">&gt;</span>
+     Content goes here!
+<span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+</pre>
+<pre>
+<span class="css-attr">.content</span> {
+    <span class="attr">background-color</span>: <span class="attr-val">orange</span>;
+    <span class="attr">height</span>: <span class="attr-val">100px</span>;
+    <span class="attr">line-height</span>: <span class="attr-val">100px</span>;
+}
+</pre>
+    <div class="paragraph">
+        支持浏览器:基本适用于所有的浏览器，这种方法也是在content的高度已知的情况下使用，和第2种方法不同的是，这是设置content内部的内容垂直居中，而内容仅限于文字，
+        需要注意的是，当内容多于1行时，内容便会溢出。
+    </div>
+    <div class="paragraph"><a href="data/articles/see-result/article-9/article-9-3.html" target="view_window">点击查看运行效果</a></div>
+</div>
+<div class="section">
+    <h4 id="num4">4.使用margin:auto</h4>
+<pre>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">class</span>=<span class="attr-val">"content"</span><span class="tag">&gt;</span><span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+</pre>
+<pre>
+<span class="css-attr">.content</span> {
+    <span class="attr">background-color</span>: <span class="attr-val">orange</span>;
+    <span class="attr">position</span>: <span class="attr-val">absolute</span>;
+    <span class="attr">top</span>: <span class="attr-val">0</span>;
+    <span class="attr">bottom</span>: <span class="attr-val">0</span>;
+    <span class="attr">left</span>: <span class="attr-val">0</span>;
+    <span class="attr">right</span>: <span class="attr-val">0</span>;
+    <span class="attr">margin</span>: <span class="attr-val">auto</span>;
+    <span class="attr">height</span>: <span class="attr-val">240px</span>;
+    <span class="attr">width</span>: <span class="attr-val">70%</span>;
+}
+</pre>
+    <div class="paragraph">
+        支持浏览器:Firefox,chrome,IE8+,Safari等，content会随窗口的大小而变化，始终位于屏幕中央。
+    </div>
+    <div class="paragraph"><a href="data/articles/see-result/article-9/article-9-4.html" target="view_window">点击查看运行效果</a></div>
+</div>
+<div class="section">
+    <h4 id="num5">5.在content上面加个div，高度占据整个页面的50%,并且进行位置的调整</h4>
+<pre>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"wrapper"</span><span class="tag">&gt;</span><span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"content"</span><span class="tag">&gt;</span><span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+</pre>
+<pre>
+<span class="css-attr">html,body</span> {
+    <span class="attr">height</span>: <span class="attr-val">100%</span>;
+    <span class="attr">margin</span>: <span class="attr-val">0</span>;
+    <span class="attr">padding</span>: <span class="attr-val">0</span>;
+}
+
+<span class="css-attr">#content</span> {
+    <span class="attr">height</span>: <span class="attr-val">50%</span>;
+    <span class="attr">margin-bottom</span>: <span class="attr-val">-150px</span>;
+}
+
+<span class="css-attr">#content</span> {
+    <span class="attr">height</span>: <span class="attr-val">300px</span>;
+    <span class="attr">background-color</span>: <span class="attr-val">orange</span>;
+}
+</pre>
+    <div class="paragraph">
+        支持浏览器:基本适用于所有的浏览器。wrapper的margin-bottom为-(content的height)/2。
+    </div>
+    <div class="paragraph"><a href="data/articles/see-result/article-9/article-9-5.html" target="view_window">点击查看运行效果</a></div>
+</div>
+<br/>
+<div class="center">--完结--</div>
