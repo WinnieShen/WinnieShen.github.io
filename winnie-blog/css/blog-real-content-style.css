@@ -47,7 +47,6 @@ pre{
     background-color: #1E1E1E;
     color: white;
     overflow-x: auto;
-    white-space: pre-wrap;
     -webkit-overflow-scrolling: touch;
     -moz-overflow-scrolling:touch;
 }
