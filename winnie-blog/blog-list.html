@@ -108,10 +108,10 @@
         
     }
 
-    $("#previous-icon>a").bind('click',function(){
+    $("#previous-icon>a").on('click',function(){
         loadArticlesByPage(currentPageNum-1,pagesSumNum);
     });
-    $("#next-icon>a").bind("click",function(){
+    $("#next-icon>a").on("click",function(){
         loadArticlesByPage(currentPageNum+1,pagesSumNum);
     });
 
