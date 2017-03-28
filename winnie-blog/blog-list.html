@@ -108,18 +108,9 @@
         $("li").removeClass("active");
         $("#page"+currentPage).addClass("active");   
     }
-
-
     $(document).on('click','#previous-icon>a',function(){
         loadArticlesByPage(currentPageNum-1,pagesSumNum);
     }).on('click','#next-icon>a',function(){
         loadArticlesByPage(currentPageNum+1,pagesSumNum);
     });
-                
-    // $("#previous-icon>a").on('click',function(){
-    //     loadArticlesByPage(currentPageNum-1,pagesSumNum);
-    // });
-    // $("#next-icon>a").on("click",function(){
-    //     loadArticlesByPage(currentPageNum+1,pagesSumNum);
-    // });
 </script>
