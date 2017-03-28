@@ -49,7 +49,6 @@ pre{
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -moz-overflow-scrollinh:touch;
-    white-space: nowrap;
 }
 pre .tag{
     color: #808070;
