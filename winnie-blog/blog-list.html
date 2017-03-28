@@ -66,7 +66,8 @@
         $("#nav-page").html(navHead + navContent + navfoot);
         $("#page1").addClass("active");
     }
-    function loadArticlesByPage(currentPage,pagesNum){    
+    function loadArticlesByPage(currentPage,pagesNum){  
+        console.log("enter.");  
         if(currentPage<=0 || currentPage >pagesNum){
             return;
         }
