@@ -48,7 +48,7 @@ pre{
     color: white;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    -moz-overflow-scrollinh:touch;
+    -moz-overflow-scrolling:touch;
 }
 pre .tag{
     color: #808070;
