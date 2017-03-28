@@ -39,9 +39,9 @@ GET /index.html
         以上表示 TCP 连接（connection）建立后，客户端向服务器请求（request）网页index.html，协议规定，服务器只能回应HTML格式的字符串，不能回应别的格式。
     </div>
 <pre>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;body&gt;</span>Hello World<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag">&lt;</span><span class="element">html</span><span class="tag">&gt;</span>
+<span class="tag">&lt;</span><span class="element">body</span><span class="tag">&gt;</span>Hello World<span class="tag">&lt;/</span><span class="element">body</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/</span><span class="element">html</span><span class="tag">&gt;</span>
 </pre>
     <div class="paragraph">
         服务器发送完毕，就关闭TCP连接。
@@ -79,9 +79,9 @@ Expires: Thu, 05 Dec 1997 16:00:00 GMT
 Last-Modified: Wed, 5 August 1996 15:55:28 GMT
 Server: Apache 0.84
 
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;body&gt;</span>Hello World<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag">&lt;</span><span class="element">html</span><span class="tag">&gt;</span>
+<span class="tag">&lt;</span><span class="element">body</span><span class="tag">&gt;</span>Hello World<span class="tag">&lt;/</span><span class="element">body</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/</span><span class="element">html</span><span class="tag">&gt;</span>
 </pre>
     <div class="paragraph">
         回应的格式是"头信息 + 一个空行（\r\n） + 数据"。其中，第一行是"协议版本 + 状态码（status code） + 状态描述"。
@@ -128,8 +128,8 @@ Accept: */*
         上面代码中，客户端声明自己可以接受任何格式的数据。<span class="btn-danger"> MIME type </span>不仅用在HTTP协议，还可以用在其他地方，比如HTML网页。
     </div>
 <pre>
-<span class="tag">&lt;meta</span> http-equiv="<span class="attr-val">Content-Type</span>" content="<span class="attr-val">text/html; charset=UTF-8</span>" <span class="tag">/&gt;</span>
-<span class="tag">&lt;meta</span> charset="<span class="attr-val">utf-8</span>" <span class="tag">/&gt;</span>
+<span class="tag">&lt;</span><span class="element">meta</span> <span class="attr">http-equiv=</span><span class="attr-val">"Content-Type"</span> <span class="attr">content=</span><span class="attr-val">"text/html; charset=UTF-8"</span> <span class="tag">/&gt;</span>
+<span class="tag">&lt;</span><span class="element">meta</span> <span class="attr">charset=</span><span class="attr-val">"utf-8"</span><span class="tag">/&gt;</span>
 </pre>
     <h5><b>3.5 Content-Encoding 字段</b></h5>
     <div class="paragraph">

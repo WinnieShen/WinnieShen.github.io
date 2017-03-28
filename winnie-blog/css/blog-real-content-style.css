@@ -64,6 +64,9 @@ pre .attr-val{
 pre .css-attr{
     color: #D7BA7D;
 }
+pre .command{
+    color: #FF5555;
+}
 img{
     margin-top: 6px;
     width: 100%;
