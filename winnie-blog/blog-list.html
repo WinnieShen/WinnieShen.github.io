@@ -56,7 +56,7 @@
         pagesSumNum =pagesNum;
         var navHead = "<nav class='center' aria-label='...'><ul class='pagination'>" + 
             "<li class='disabled' id='previous-icon'><a aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
-        var navfoot = "<li id='next-icon'><a aria-label='Previous'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>";
+        var navfoot = "<li id='next-icon'><a aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li></ul></nav>";
         var navContent = "";
         for(var i=1;i<=pagesNum;i++){
             var text = "<li id='page"+ i +"'><a onclick='loadArticlesByPage("+ i + ","+ pagesNum + ");'>"+ i +" <span class='sr-only'>(current)</span></a></li>";
@@ -106,16 +106,20 @@
             $("#article-list").append(ulText);
         }
         $("li").removeClass("active");
-        $("#page"+currentPage).addClass("active");
-        
+        $("#page"+currentPage).addClass("active");   
     }
 
-    $("#previous-icon>a").on('click',function(){
+
+    $(document).on('click','#previous-icon>a',function(){
         loadArticlesByPage(currentPageNum-1,pagesSumNum);
-    });
-    $("#next-icon>a").on("click",function(){
+    }).on('click','#next-icon>a',function(){
         loadArticlesByPage(currentPageNum+1,pagesSumNum);
     });
-
-    
+                
+    // $("#previous-icon>a").on('click',function(){
+    //     loadArticlesByPage(currentPageNum-1,pagesSumNum);
+    // });
+    // $("#next-icon>a").on("click",function(){
+    //     loadArticlesByPage(currentPageNum+1,pagesSumNum);
+    // });
 </script>
