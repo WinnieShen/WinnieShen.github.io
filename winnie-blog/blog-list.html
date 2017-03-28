@@ -71,6 +71,7 @@
             return;
         }
         currentPageNum = currentPage;
+        console.log("currentPageNum:" + currentPageNum);
         var arr = sorArticlesByDate(articleArr);
         $("#article-list").html("");
         if(pagesNum == 1){
