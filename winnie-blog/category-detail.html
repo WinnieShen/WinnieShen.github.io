@@ -18,7 +18,7 @@
             var artArr = getArticleByCategoryDetail(arr[i].id);
             var ulText = "";
             if(artArr.length == 0){
-                ulText = "该分类下尚未添加文章。";
+                ulText = "<span class='font-tillana color-black font-not-large'>该分类下尚未添加文章。</span>";
             }
             for(var j=0;j<artArr.length;j++){
                 var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
