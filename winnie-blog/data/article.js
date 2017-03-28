@@ -80,9 +80,12 @@ function getArticleByYear(year){
 }
 var articleDic = "data/articles/";
 var articleArr =[
+    new article(9,"CSS3-实现垂直居中的方法","2016/10/26",3,
+        "在前端技术日新月异的今天，浏览器兼容已经成为一个重要问题，那么CSS中实现的样式，也需要考虑到浏览器的兼容，那么，我们今天来探讨一下垂直居中的方式，以及" + 
+        "在不同浏览器的实现情况。", 
+        articleDic + "article-9.html"),
     new article(8,"了解CSS,以及简单的CSS属性","2015/09/19",3,
-        "css",
-        articleDic + "article-8.html"),
+        "css", articleDic + "article-8.html"),
     new article(7,"了解html,以及基本的html标签","2015/08/18",3,
         "作为一个无开发经验者，无论是前端还是后台，都需要会写基本的html代码，下面我来介绍一下html的基本知识。",
         articleDic + "article-7.html"),

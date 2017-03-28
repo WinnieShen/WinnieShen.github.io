@@ -1,0 +1,25 @@
+<div class="paragraph">
+    在前端技术日新月异的今天，浏览器兼容已经成为一个重要问题，那么CSS中实现的样式，也需要考虑到浏览器的兼容，那么，我们今天来探讨一下垂直居中的方式，以及在不同浏览器的实现情况。
+</div>
+<h4 id="num1">1.设置 display:table</h4>
+<pre>
+<span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"wrapper"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;</span><span class="element">div</span> <span class="attr">id</span>=<span class="attr-val">"cell"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;</span><span class="element">div</span> <span class="attr">class</span>=<span class="attr-val">"content"</span><span class="tag">&gt;</span>
+            Content goes here!
+        <span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="element">div</span>&gt;</span>
+</pre>
+<pre>
+<span class="css-attr">#wrapper</span> {
+    <span class="attr">display</span>: <span class="attr-val">table</span>;
+}
+
+<span class="css-attr">#cell</span> {
+    <span class="attr">display</span>: <span class="attr-val">table-cell</span>;
+    <span class="attr">vertical-align</span>: <span class="attr-val">middle</span>;
+}
+</pre>
+<div class="paragraph">效果如：<a href="">点击查看效果</a></div>
+<h4 id="num2">2.ls命令</h4>

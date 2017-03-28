@@ -44,19 +44,25 @@ pre{
     margin-top: 6px;
     padding-top: 10px;
     padding-left: 20px;
-    background-color: #2B2B2B;
+    background-color: #1E1E1E;
     color: white;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 pre .tag{
-    color: #E8BF6A;
+    color: #808070;
+}
+pre .element{
+    color: #569CD6;
 }
 pre .attr{
-    color: white;
+    color: #8CDCFE;
 }
 pre .attr-val{
-    color: #A5C261;
+    color: #CE8248;
+}
+pre .css-attr{
+    color: #D7BA7D;
 }
 img{
     margin-top: 6px;
