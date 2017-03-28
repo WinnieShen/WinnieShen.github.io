@@ -19,7 +19,7 @@
             for(var j=0;j<artArr.length;j++){
                 var ulHtml = "<li class='font-common inner-space-two'><span class='font-yahei outer-space-right-ten'>" +
                 artArr[j].publishDate +
-                "</span><a class='color-black font-tillana font-not-large' >" +
+                "</span><a class='color-black font-tillana font-not-large' onclick='loadOneArticle("+ artArr[j].id +");' >" +
                 artArr[j].title +
                 "</a></li>";
                 ulText += ulHtml;
@@ -29,5 +29,26 @@
 
             $("#category-list").append(categoryContent);
         }
+    }
+
+    function loadOneArticle(id){
+        var thisAticle = getArticleById(id);
+        $("#category-list").html("");
+        var ulText = "<article class='blog-content'>" +
+        "<h3><a class='color-black-hover-grey no-underline font-tillana'>"+
+        thisAticle.title +
+        "</a></h3>" + 
+        "<div class='font-common'>" + 
+        "<label class='color-gray'>"+
+        thisAticle.publishDate +
+         "</label>" + 
+        "<a class='comments-number no-underline color-grey'>" + 
+        "<span class='glyphicon glyphicon-comment'></span>" +
+         getCommentsOfBlogSortByDate(thisAticle.id).length +
+        "条评论</a></div><div class='blog-real-content' id='article" + id + "'>" +  
+        "</div></article>";
+      
+        $("#category-list").append(ulText);
+        $("#article"+id).load(thisAticle.content);
     }
 </script>

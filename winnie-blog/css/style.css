@@ -53,6 +53,23 @@
 .left-bar{
     padding-right: 30px;
 }
+article{
+    color: #444444;
+    padding-bottom: 40px;
+    font-family: "Microsoft YaHei UI",SimHei,sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.comments-number{
+    float: right;
+    margin-right: 20px;
+}
+.read-more{
+    font-family: "Microsoft YaHei", sans-serif;
+    color:#6E7173;
+    float: right;
+    margin-right: 10px;
+}
 /*right bar*/
 .right-bar{
     height: auto;

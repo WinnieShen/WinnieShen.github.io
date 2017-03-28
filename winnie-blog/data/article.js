@@ -54,7 +54,6 @@ function listArticleYears(){
         var year = new Date(articleArr[i].publishDate).getFullYear();
         if(arr.indexOf(year) == -1){
             arr.push(year);
-            console.log(year);
         }
     }
     for(var i=0;i<arr.length;i++){
