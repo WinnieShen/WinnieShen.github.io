@@ -46,6 +46,7 @@ pre{
     padding-left: 20px;
     background-color: #1E1E1E;
     color: white;
+    position: relative;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -moz-overflow-scrolling:touch;
