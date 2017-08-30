@@ -87,5 +87,5 @@ var articleArr =[
         "HTTP 是基于TCP/IP协议的应用层协议。它不涉及数据包（packet）传输，主要规定了客户端和服务器之间的通信格式，默认使用80端口(HTTPS是443)。由于" + 
         "其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过几年的使用与发展，得到不断地完善和扩展。当前最新版本为2015年5月作为互联网" +
         "标准正式发布的HTTP/2，替换HTTP 1.1成为HTTP的实现标准。",
-        articleDic + "article-6.html")
+        articleDic + "article-2-http-konwledge.html")
 ];
