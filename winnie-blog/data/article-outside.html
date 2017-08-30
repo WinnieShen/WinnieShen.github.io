@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Winnie's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0,user-scalable=0" />
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <link rel="stylesheet" href="../resource/bootstrap-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../resource/font-awesome/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/plugin.css" />
+    <link rel="stylesheet" href="css/blog-real-content-style.css" />
+    <style>
+        .nav-home-page-active{
+            border: 1px #EEEEEE;
+            border-top-style: solid;
+            border-left-style: solid;
+            line-height: 40px;
+        }
+        .nav-category{
+            border: 1px #EEEEEE;
+            border-bottom-style: solid;
+            border-left-style: solid;
+            line-height: 40px;
+        }
+        .nav-home-page{
+            border: 1px #EEEEEE;
+            border-bottom-style: solid;
+            border-right-style: solid;
+            line-height: 40px;
+        }
+        .nav-category-active{
+            border: 1px #EEEEEE;
+            border-top-style: solid;
+            border-right-style: solid;
+            line-height: 40px;
+        }
+        .nav-home-page:hover{
+            border-bottom-color: black;
+        }
+        .nav-category:hover{
+            border-bottom-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="container">
+            <header class="blog-owner">
+                <h1><a href="index.html" class="color-black-hover-grey font-tillana no-underline">Winnie's Blog</a></h1>
+            </header>
+            <div class="row nav-content">
+                <div class="col-lg-9 nav-line">个性签名：这世界本没有路，走的人多了，就成了路。</div>
+                <div class="col-lg-1 nav-home-page-active" id="home-page-link">
+                    <a class="no-underline color-grey" href="index.html"><span class="glyphicon glyphicon-home"></span>首页</a>
+                </div>
+                <div class="col-lg-1 nav-category" id="category-link">
+                    <a class="no-underline color-grey" onclick="loadCategoryDate();"><span class="glyphicon glyphicon-folder-close"></span>分类</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 left-bar" id="blog-inside-bar">
+                    
+                </div>
+                <div class="col-lg-4 right-bar" id="right-bar-div">
+                    <div class="input-group stylish-input-group blog-search font-simhei">
+                        <input type="text" class="form-control"  placeholder="Search" />
+                        <span class="input-group-addon">
+                            <button type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="blog-right-bar-item blog-category">
+                        <a class="font-larger no-underline color-grey font-yahei" onclick="loadCategoryDetail();">
+                            <span class="glyphicon glyphicon-folder-close"></span>Category
+                        </a>
+                        <ul class="blog-right-bar-list" id="category-detail">
+
+                        </ul>
+                    </div>
+                    <div class="blog-right-bar-item blog-new-articles">
+                        <a class="font-larger no-underline color-grey font-yahei">
+                            <span class="glyphicon glyphicon-list-alt"></span>New Articles
+                        </a>
+                        <ul class="blog-right-bar-list" id="new-articles">
+
+                        </ul>
+                    </div>
+                    <div class="blog-right-bar-item">
+                        <a class="font-larger no-underline color-grey font-yahei">
+                            <span class="glyphicon glyphicon-comment"></span>New Comments
+                        </a>
+                        <ul class="comments-list" id="new-comments">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="little-view-tags tag-home-page">
+        <a href="index.html"><span class="glyphicon glyphicon-home"></span><div>首页</div></a>
+    </div>
+    <div class="little-view-tags tag-category">
+        <a onclick="loadCategoryDate();"><span class="glyphicon glyphicon-folder-close"></span><div>分类</div></a>
+    </div>
+    <div class="tag-click-icon">
+        <span id="tag-show" class="glyphicon glyphicon-chevron-left"></span>
+        <span id="tag-hide" class="glyphicon glyphicon-chevron-right"></span>
+    </div>
+
+    <div class="tag-personal-page">
+        <a href="../index.html">返回个人主页</a>
+    </div>
+    <div class="panel-footer center font-josefin-sans">
+        Copyright © 2016: Winnie Shen.
+    </div>
+</body>
