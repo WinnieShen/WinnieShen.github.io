@@ -158,28 +158,28 @@
     function loadCategoryDetailList(){
         var cateArr = sortCategoryDetailByDate(categoryDetailArr);
         for(var i=0;i<cateArr.length;i++){
-            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadCategoryDetail();'>"+  cateArr[i].name + "</a></li>";
-            $("#category-detail").append(lilink);
+            var liLink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadCategoryDetail();'>"+  cateArr[i].name + "</a></li>";
+            $("#category-detail").append(liLink);
         }
     }
 
     function loadNewArticles(){
         var artArr = getFourLatestArticles();
         for(var i=0;i<artArr.length;i++){
-            var lilink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadOneArticle("+ artArr[i].id +")'>"+  artArr[i].title + "</a></li>";
-            $("#new-articles").append(lilink);
+            var liLink = "<li><a class='color-grey-hover-black font-yahei font-common' onclick='loadOneArticle("+ artArr[i].id +")'>"+  artArr[i].title + "</a></li>";
+            $("#new-articles").append(liLink);
         }
     }
 
     function loadNewComments(){
         var comArr = getThreeLatestComments();
         for(var i=0;i<comArr.length;i++){
-            var lilink = "<li><a class='comment-user color-grey-hover-black no-underline font-common font-yahei' onclick='loadOneArticle("+ comArr[i].blogId +")'>" 
+            var liLink = "<li><a class='comment-user color-grey-hover-black no-underline font-common font-yahei' onclick='loadOneArticle("+ comArr[i].blogId +")'>"
                         + getUserById(comArr[i].userId).name + "</a>"
                         + "<div class='font-smaller color-gray ellipsis-one-line-style'>" + "<span style='margin-right:10px;'>" + comArr[i].createDate+ "</span>" 
                         + "<a class='color-grey-hover-black no-underline' onclick='loadOneArticle("+ comArr[i].blogId +")'>"
                         + getArticleById(comArr[i].blogId).title + "</a></div><div class='color-real-black font-common font-simhei ellipsis-style'>" + comArr[i].content + "</div></li>";
-            $("#new-comments").append(lilink);
+            $("#new-comments").append(liLink);
         }
     }
     function loadOneArticle(id){
